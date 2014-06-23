@@ -24,10 +24,10 @@ shinyServer(function(input,output,session) {
   output$chart <- renderPlot({
     if(!is.null(input$activesymbol)) {
       oldest <- index(get(input$activesymbol)
-                      [,paste(input$activesymbol,'.Close',sep='')]
+                      [,paste(input$activesymbol,'.Adjusted',sep='')]
                       [1])
       youngest <- index(get(input$activesymbol)
-                      [,paste(input$activesymbol,'.Close',sep='')]
+                      [,paste(input$activesymbol,'.Adjusted',sep='')]
                       [dim(get(input$activesymbol))[1]])
       first <- input$chartRange[1]
       last <- input$chartRange[2]
@@ -51,7 +51,7 @@ shinyServer(function(input,output,session) {
     days <- t2 - t1
 
     sym <- input$activesymbol
-    prices <- get(sym)[,paste(sym,'.Close',sep='')]
+    prices <- get(sym)[,paste(sym,'.Adjusted',sep='')]
 
     p1 <- prices[paste(t1,'/',sep='')][1]
     
